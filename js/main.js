@@ -27,7 +27,7 @@ $(document).ready(function () {
       empCard += '</div>';
       $('main').html(empCard);
       $('main').click(function(){
-            alert(this.html);
+        alert("Triggered by a " + event.target.nodeName + " element.");
       });
   }
   $.getJSON(rndmApiCall, displayEmpCards); // end getJSON
