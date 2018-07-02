@@ -9,7 +9,7 @@ $(document).ready(function () {
       empCard += '<img src="' + emp.picture.large + '">';
       empCard += '</section>';
       empCard += '<section class="empInfo">';
-      empCard += '<h2>' + emp.name.first + ' ' + emp.name.last +'</h2>';
+      empCard += '<h2 class="empName">' + emp.name.first + ' ' + emp.name.last +'</h2>';
       empCard += '<p>' + emp.email + '</p>';
       empCard += '<p>' + emp.location.city + '</p>';
       empCard += '</section>';
@@ -24,7 +24,6 @@ $(document).ready(function () {
     });
       empCard += '</div>';
       $('main').html(empCard);
-
   }
   $.getJSON(rndmApiCall, displayEmpCards); // end getJSON
   //Modal
@@ -49,8 +48,7 @@ $(document).ready(function () {
             $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
             console.log(currIdx);
             if (currIdx < 0) {
-              $('#overlay').css({"display":"none"});
-              currIdx = 0;
+              currIdx = 12;
             }
           });
           $('#overlay').on( "click", '#next',function(){
@@ -63,7 +61,6 @@ $(document).ready(function () {
               $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
               console.log(currIdx);
               if (currIdx > 11) {
-                $('#overlay').css({"display":"none"});
                   currIdx = 0;
               }
           });
@@ -81,6 +78,20 @@ $(document).ready(function () {
 
 
 
+  });
+
+  $('#search').bind('input', function() {
+       var searchStr = $(this).val().toLowerCase();
+       $('.empName').each(function() {
+
+            var str = $(this).text().toLowerCase();
+            console.log(this);
+            if(str.indexOf(searchStr) > -1) {
+                 $(this).parent().parent().show();
+            }else {
+                 $(this).parent().parent().hide();
+            }
+       });
   });
 
 

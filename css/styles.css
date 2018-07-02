@@ -29,20 +29,26 @@ span{
   font-size: 3rem;
   color:whitesmoke;
   font-family: 'Josefin Slab', serif;
+  border-radius: 50%;
   position:fixed;
+  width:50px;
+  height:50px;
+  padding:15px;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 #prev{
-  top:50%;
+  top:65%;
   left:25%;
 }
 #next{
-  top:50%;
+  top:65%;
   right:25%;
 }
 #close{
-  top:10%;
-  right:10%;
+  top:3%;
+  right: 12%;
 }
+
 [class*="empCard--"]{
   width: 250px;
   margin: 30px;
@@ -87,7 +93,7 @@ img:hover{
     display: none;
     border-top: 2px solid #c4c4c4;
   }
-  .imgwrapper{
+  #empList .imgwrapper{
     display: inline-block;
     margin-right: 30px;
     width: auto;
@@ -106,7 +112,21 @@ img:hover{
     height:auto;
     margin-top:150px;
   }
+  #prev{
+    top:80%;
+  }
+  #next{
+    top:80%;
+  }
+  #close{
+    top:10%;
+  }
 }
 @media only screen and (min-width:1000px) {
-
+  #prev{
+    top:50%;
+  }
+  #next{
+    top:50%;
+  }
 }
