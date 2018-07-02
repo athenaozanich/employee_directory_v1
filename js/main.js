@@ -42,7 +42,7 @@ $(document).ready(function () {
           $('#overlay').on( "click", '#prev',function(){
             currIdx--;
             console.log(currIdx);
-            if (cards < 0) {
+            if (currIdx < 0) {
               currIdx = 11;
             }
             $('#overlay [class*="empCard--"]').remove();
