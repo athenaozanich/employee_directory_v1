@@ -48,7 +48,11 @@ span{
   top:3%;
   right: 12%;
 }
+#search, label{
+  font-size: 1.5em;
+  font-family: 'Josefin Slab', serif;
 
+}
 [class*="empCard--"]{
   width: 250px;
   margin: 30px;
@@ -121,6 +125,8 @@ img:hover{
   #close{
     top:10%;
   }
+
+
 }
 @media only screen and (min-width:1000px) {
   #prev{
@@ -128,5 +134,16 @@ img:hover{
   }
   #next{
     top:50%;
+  }
+  header{
+    text-align:left;
+  }
+  header h1{
+    margin: 30px 150px;
+    display: inline-block;
+  }
+
+  label{
+    margin-left: 20%;
   }
 }
