@@ -4,7 +4,7 @@ $(document).ready(function () {
   function displayEmpCards(response){
     var empCard = '<div id="empList">';
     $.each(response.results, function(idx, emp){
-      empCard += '<div class="empCard">';
+      empCard += '<div class="empCard--'+ idx +'">';
       empCard += '<section class="imgwrapper">';
       empCard += '<img src="' + emp.picture.large + '">';
       empCard += '</section>';
@@ -21,19 +21,67 @@ $(document).ready(function () {
       empCard += '<p>' + dobfrmtd + '</p>';
       empCard += '</section>';
       empCard += '</div>';
-
     });
-    console.log(empCard);
       empCard += '</div>';
       $('main').html(empCard);
-      $('main').click(function(){
-        alert("Triggered by a " + event.target.nodeName + " element.");
-      });
+
   }
   $.getJSON(rndmApiCall, displayEmpCards); // end getJSON
-
   //Modal
+  $('main').on( "click", '[class*="empCard--"]', function(){
+    $('#overlay [class*="empCard--"]').remove();
+    $('#overlay').css({"display":"block"});
+    var cards = document.querySelectorAll('[class*="empCard--"]');
+    for (var i = 0; i < cards.length; i++) {
 
+      if (cards[i] === this) {
+        var currIdx = i;
+        $('#overlay').on( "click", '#close',function(){
+            $('#overlay').css({"display":"none"});
+        });
+          $('#overlay').on( "click", '#prev',function(){
+            currIdx--;
+            $('#overlay [class*="empCard--"]').remove();
+            $('.empCard--'+currIdx).clone().appendTo( '#overlay' );
+            $('#overlay .empCard--'+currIdx ).addClass("modal");
+            $('#overlay .empCard--'+currIdx+' .imgwrapper').css({"display":"block"});
+            $('#overlay .empCard--'+currIdx+' .empInfo').css({"text-align":"center"});
+            $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
+            console.log(currIdx);
+            if (currIdx < 0) {
+              $('#overlay').css({"display":"none"});
+              currIdx = 0;
+            }
+          });
+          $('#overlay').on( "click", '#next',function(){
+              $('#overlay [class*="empCard--"]').remove();
+              currIdx++;
+              $('.empCard--'+currIdx).clone().appendTo( '#overlay' );
+              $('#overlay .empCard--'+currIdx ).addClass("modal");
+              $('#overlay .empCard--'+currIdx+' .imgwrapper').css({"display":"block"});
+              $('#overlay .empCard--'+currIdx+' .empInfo').css({"text-align":"center"});
+              $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
+              console.log(currIdx);
+              if (currIdx > 11) {
+                $('#overlay').css({"display":"none"});
+                  currIdx = 0;
+              }
+          });
+        var cardsIdx = cards[i];
+        $('.empCard--'+currIdx).clone().appendTo( '#overlay' );
+        $('#overlay .empCard--'+currIdx ).addClass("modal");
+        $('#overlay .empCard--'+currIdx+' .imgwrapper').css({"display":"block"});
+        $('#overlay .empCard--'+currIdx+' .empInfo').css({"text-align":"center"});
+        $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
+
+
+      }
+    }
+
+
+
+
+  });
 
 
 }); // end ready

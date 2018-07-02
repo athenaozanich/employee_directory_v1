@@ -25,7 +25,25 @@ p{
   top:0px;
   background-color: rgba(0, 0, 0, 0.9);
 }
-.empCard{
+span{
+  font-size: 3rem;
+  color:whitesmoke;
+  font-family: 'Josefin Slab', serif;
+  position:fixed;
+}
+#prev{
+  top:50%;
+  left:25%;
+}
+#next{
+  top:50%;
+  right:25%;
+}
+#close{
+  top:10%;
+  right:10%;
+}
+[class*="empCard--"]{
   width: 250px;
   margin: 30px;
   display: inline-block;
@@ -50,18 +68,18 @@ img{
   width:75px;
   height:75px;
   border-radius: 50%;
-  border:2px solid #c4c4c4;
+  border:2px solid #000;
   display: block;
   margin: auto;
   margin-top:25px;
   transition:1s;
 }
 img:hover{
-  width:125px;
-  height:125px;
+  width:100px;
+  height:100px;
 }
 @media only screen and (min-width:450px) {
-  .empCard{
+  [class*="empCard--"]{
     width:350px;
     height:125px;
   }
@@ -71,7 +89,7 @@ img:hover{
   }
   .imgwrapper{
     display: inline-block;
-    margin-right: 47px;
+    margin-right: 30px;
     width: auto;
   }
   img{
@@ -79,7 +97,14 @@ img:hover{
   }
   .empInfo{
     display: inline-block;
+    width:200px;
     text-align: left;
+  }
+  /*MODAL EMPLOYEE CARD CONFIGURATION*/
+  .modal{
+    width:250px;
+    height:auto;
+    margin-top:150px;
   }
 }
 @media only screen and (min-width:1000px) {
