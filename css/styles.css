@@ -39,19 +39,21 @@ span{
 #prev{
   top:65%;
   left:25%;
+  cursor: pointer;
 }
 #next{
   top:65%;
   right:25%;
+  cursor: pointer;
 }
 #close{
   top:3%;
   right: 12%;
+  cursor: pointer;
 }
 #search, label{
   font-size: 1.5em;
   font-family: 'Josefin Slab', serif;
-
 }
 [class*="empCard--"]{
   width: 250px;
@@ -61,6 +63,7 @@ span{
   background-color:white;
   border: 1px solid #c4c4c4;
   border-radius:5px;
+  cursor: pointer;
 }
 .imgwrapper{
   height:90px;
