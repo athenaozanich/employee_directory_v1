@@ -17,7 +17,7 @@ $(document).ready(function () {
       empCard += '<p>' + emp.phone + '</p>';
       empCard += '<p>' + emp.location.street +' '+ emp.location.city +', '+ emp.location.state + '</p>';
       var dob = emp.dob.date.split('');
-      var dobfrmtd= dob[5] + dob[6] + '/' + dob[8]+ dob[9] + '/' + dob[2] + dob[3];
+      var dobfrmtd = dob[5] + dob[6] + '/' + dob[8]+ dob[9] + '/' + dob[2] + dob[3];
       empCard += '<p>' + dobfrmtd + '</p>';
       empCard += '</section>';
       empCard += '</div>';
@@ -38,38 +38,37 @@ $(document).ready(function () {
         $('#overlay').on( "click", '#close',function(){
             $('#overlay').css({"display":"none"});
         });
+
           $('#overlay').on( "click", '#prev',function(){
             currIdx--;
+            console.log(currIdx);
+            if (cards < 0) {
+              currIdx = 11;
+            }
             $('#overlay [class*="empCard--"]').remove();
             $('.empCard--'+currIdx).clone().appendTo( '#overlay' );
             $('#overlay .empCard--'+currIdx ).addClass("modal");
             $('#overlay .empCard--'+currIdx+' .imgwrapper').css({"display":"block"});
             $('#overlay .empCard--'+currIdx+' .empInfo').css({"text-align":"center"});
             $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
-            console.log(currIdx);
-            if (currIdx < 0) {
-              currIdx = 12;
-            }
           });
           $('#overlay').on( "click", '#next',function(){
-              $('#overlay [class*="empCard--"]').remove();
-              currIdx++;
-              $('.empCard--'+currIdx).clone().appendTo( '#overlay' );
-              $('#overlay .empCard--'+currIdx ).addClass("modal");
-              $('#overlay .empCard--'+currIdx+' .imgwrapper').css({"display":"block"});
-              $('#overlay .empCard--'+currIdx+' .empInfo').css({"text-align":"center"});
-              $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
-              console.log(currIdx);
-              if (currIdx > 11) {
-                  currIdx = 0;
-              }
+            currIdx++;
+            if (currIdx > 11) {
+                currIdx = 0;
+            }
+            $('#overlay [class*="empCard--"]').remove();
+            $('.empCard--'+currIdx).clone().appendTo( '#overlay' );
+            $('#overlay .empCard--'+currIdx ).addClass("modal");
+            $('#overlay .empCard--'+currIdx+' .imgwrapper').css({"display":"block"});
+            $('#overlay .empCard--'+currIdx+' .empInfo').css({"text-align":"center"});
+            $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
           });
-        var cardsIdx = cards[i];
-        $('.empCard--'+currIdx).clone().appendTo( '#overlay' );
-        $('#overlay .empCard--'+currIdx ).addClass("modal");
-        $('#overlay .empCard--'+currIdx+' .imgwrapper').css({"display":"block"});
-        $('#overlay .empCard--'+currIdx+' .empInfo').css({"text-align":"center"});
-        $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
+          $('.empCard--'+currIdx).clone().appendTo( '#overlay' );
+          $('#overlay .empCard--'+currIdx ).addClass("modal");
+          $('#overlay .empCard--'+currIdx+' .imgwrapper').css({"display":"block"});
+          $('#overlay .empCard--'+currIdx+' .empInfo').css({"text-align":"center"});
+          $('#overlay .empCard--'+currIdx+' .addtlInfo').css({"display":"block"});
 
 
       }
