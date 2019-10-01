@@ -4,33 +4,41 @@ $(document).ready(function () {
   function displayEmpCards(response){
     var empCard = '<div id="empList">';
     $.each(response.results, function(idx, emp){
-      empCard += '<div class="empCard--'+ idx +'">';
-      empCard += '<section class="imgwrapper">';
-      empCard += '<img src="' + emp.picture.large + '">';
-      empCard += '</section>';
-      empCard += '<section class="empInfo">';
-      empCard += '<h2 class="empName">' + emp.name.first + ' ' + emp.name.last +'</h2>';
-      empCard += '<p>' + emp.email + '</p>';
-      empCard += '<p>' + emp.location.city + '</p>';
-      empCard += '</section>';
-      empCard += '<section class="addtlInfo">';
-      empCard += '<p>' + emp.phone + '</p>';
-      empCard += '<p>' + emp.location.street +' '+ emp.location.city +', '+ emp.location.state + '</p>';
-      var dob = emp.dob.date.split('');
-      var dobfrmtd = dob[5] + dob[6] + '/' + dob[8]+ dob[9] + '/' + dob[2] + dob[3];
-      empCard += '<p>' + dobfrmtd + '</p>';
-      empCard += '</section>';
-      empCard += '</div>';
+          empCard += `<div class="empCard--${idx}">
+          <section class="imgwrapper">
+          <img src="${emp.picture.large}">
+          </section>
+          <section class="empInfo">
+          <h2 class="empName">${emp.name.first} ${emp.name.last}</h2>
+          <p>${emp.email}</p>
+          <p>${emp.location.city}</p>
+          </section>
+          <section class="addtlInfo">
+          <p>${emp.phone}</p>
+          <p>${emp.location.street.name} ${emp.location.city} ${emp.location.state}</p>`;
+          var dob = emp.dob.date.split("");
+          var dobfrmtd = `${dob[5]}${dob[6]}/${dob[8]}${dob[9]}/${dob[2]}${dob[3]}`;
+          empCard += `<p>${dobfrmtd}</p>
+          </section>
+          </div>`;
     });
       empCard += '</div>';
-      $('main').html(empCard);
+      (function myLoop (i) {
+        setTimeout(function () {      //  your code here
+          $('main').html(empCard);
+          if (--i) myLoop(i);      //  decrement i and call myLoop again if i > 0
+        }, 100)
+      })(response.results.length);
+
   }
+
   $.getJSON(rndmApiCall, displayEmpCards); // end getJSON
   //Modal
   $('main').on( "click", '[class*="empCard--"]', function(){
     $('#overlay [class*="empCard--"]').remove();
     $('#overlay').css({"display":"block"});
     var cards = document.querySelectorAll('[class*="empCard--"]');
+
     for (var i = 0; i < cards.length; i++) {
 
       if (cards[i] === this) {
